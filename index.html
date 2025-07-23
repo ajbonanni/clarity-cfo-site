@@ -53,9 +53,12 @@
 
 <section id="import-modeling" class="py-16 px-6 text-center bg-white">
   <h2 class="text-3xl font-bold mb-6">Import & Modeling</h2>
-  <p class="max-w-3xl mx-auto text-gray-700">
-    Upload .csv, .xlsx, or .pdf files from QuickBooks, NetSuite, or SAP. ClarityCFO’s AI reads your raw data, detects revenue/expense patterns, forecasts burn, and generates financial narratives — no setup needed.
+  <p class="max-w-3xl mx-auto text-gray-700 mb-4">
+    Upload .csv, .xlsx, or .pdf files from QuickBooks, NetSuite, or SAP. ClarityCFO’s AI reads your data, detects revenue/expense patterns, forecasts burn, and generates financial narratives — no setup needed.
   </p>
+  <a href="#file-upload" class="inline-block bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700">
+    Jump to Upload Tool →
+  </a>
 </section>
 
 <section id="pricing" class="py-16 px-6 text-center bg-white">
@@ -94,6 +97,7 @@
   </div>
 </section>
 
+<!-- Upload Section + Diagnostic Output + Script -->
 <section id="file-upload" class="bg-gray-50 py-16 px-6">
   <div class="max-w-xl mx-auto text-center">
     <h3 class="text-3xl font-bold mb-6">Upload Your Financials</h3>
@@ -111,7 +115,6 @@
 </footer>
 
 <script>
-try {
   const firebaseConfig = {
     apiKey: "AIzaSyCfYTgv1MVWfDezRV-i00oL9ca3f56auFc",
     authDomain: "clarity-cfo.firebaseapp.com",
@@ -134,6 +137,7 @@ try {
     uploadStatus.classList.add("hidden");
     diagnosticBox.classList.add("hidden");
     aiNarrative.classList.add("hidden");
+    uploadStatus.innerHTML = "";
     diagnosticBox.innerHTML = "";
     aiNarrative.innerHTML = "";
 
@@ -218,9 +222,6 @@ try {
       timestamp: firebase.firestore.FieldValue.serverTimestamp()
     });
   }
-} catch (err) {
-  console.error("🚨 Script error:", err);
-}
 </script>
 </body>
 </html>
