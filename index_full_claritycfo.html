@@ -2,79 +2,63 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ClarityCFO.ai</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-storage-compat.js"></script>
 </head>
 <body class="bg-gray-50 text-gray-800">
 
-<!-- HERO -->
-<section class="bg-gradient-to-r from-blue-600 to-blue-400 text-white py-20 px-6 text-center">
-  <h1 class="text-4xl md:text-6xl font-bold mb-4">ClarityCFO.ai</h1>
-  <p class="text-lg md:text-2xl max-w-2xl mx-auto">Real-time financial diagnostics powered by AI. Upload. Analyze. Decide.</p>
+<!-- Hero -->
+<section class="bg-blue-600 text-white py-20 px-6 text-center">
+  <h1 class="text-4xl font-bold mb-4">Modern Finance. Automated. Scalable.</h1>
+  <p class="mb-6 max-w-xl mx-auto">ClarityCFO blends senior CFO strategy with real-time AI tools. Cash flow, burn rate, board-ready reports — without hiring a finance team.</p>
+  <a href="#file-upload" class="bg-white text-blue-600 font-semibold px-6 py-3 rounded">Get Your 5-Minute CFO Assessment →</a>
 </section>
 
-<!-- HOW IT WORKS -->
-<section class="py-20 px-6 bg-gray-100 text-center">
-  <h2 class="text-3xl font-bold mb-6">How It Works</h2>
-  <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-    <div>
-      <h3 class="font-semibold text-xl mb-2">1. Upload Financials</h3>
-      <p class="text-gray-700">Drag and drop your exported QuickBooks, NetSuite, or SAP files.</p>
-    </div>
-    <div>
-      <h3 class="font-semibold text-xl mb-2">2. Instant Diagnostics</h3>
-      <p class="text-gray-700">Get real-time alerts on burn rate, revenue health, and red flags.</p>
-    </div>
-    <div>
-      <h3 class="font-semibold text-xl mb-2">3. Take Action</h3>
-      <p class="text-gray-700">Use insights to make faster, smarter decisions as CFO or founder.</p>
-    </div>
+<!-- How It Works -->
+<section class="py-16 px-6 text-center">
+  <h2 class="text-3xl font-bold mb-10">How It Works</h2>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+    <div><h3 class="text-xl font-bold mb-2">1. Onboard</h3><p>Connect QuickBooks, payroll, CRM. We’ll map your data in <strong>24 hours</strong>.</p></div>
+    <div><h3 class="text-xl font-bold mb-2">2. Automate</h3><p>Agentic AI builds rolling forecasts, cash views, and alerts.</p></div>
+    <div><h3 class="text-xl font-bold mb-2">3. Advise</h3><p>Monthly insights and founder coaching from real CFOs + live dashboards.</p></div>
   </div>
 </section>
 
-<!-- SERVICES -->
-<section class="py-20 px-6 bg-white text-center">
-  <h2 class="text-3xl font-bold mb-6">Services</h2>
-  <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-    <div>
-      <h3 class="text-xl font-semibold mb-2">AI Financial Analysis</h3>
-      <p>Identify trends, risks, and signals across your P&L and cash flow in seconds.</p>
-    </div>
-    <div>
-      <h3 class="text-xl font-semibold mb-2">Automated Red Flag Detection</h3>
-      <p>Instant Tier 1 warnings for negative revenue trends, rising expenses, or low runway.</p>
-    </div>
-    <div>
-      <h3 class="text-xl font-semibold mb-2">CFO Workflow Integration</h3>
-      <p>Connect insights to your CFO dashboards, board decks, and investor updates.</p>
-    </div>
+<!-- Services -->
+<section class="bg-gray-100 py-12 text-center">
+  <h2 class="text-2xl font-bold mb-6">Our Services</h2>
+  <div class="flex flex-wrap justify-center gap-6 text-sm">
+    <span class="bg-white shadow px-4 py-2 rounded">Real-Time Cash Flow</span>
+    <span class="bg-white shadow px-4 py-2 rounded">Scenario Planning</span>
+    <span class="bg-white shadow px-4 py-2 rounded">Burn + Budget Tracking</span>
+    <span class="bg-white shadow px-4 py-2 rounded">Board Dashboards</span>
+    <span class="bg-white shadow px-4 py-2 rounded">Alerts + Recommendations</span>
   </div>
 </section>
 
-<!-- FILE UPLOAD -->
-<section class="bg-white py-16 px-6">
+<!-- Upload UI -->
+<section id="file-upload" class="bg-white py-16 px-6">
   <div class="max-w-xl mx-auto text-center">
-    <h3 class="text-3xl font-bold mb-6">Upload Your Financials</h3>
-    <p class="mb-4">Upload a .csv file — exported from QuickBooks, NetSuite, or SAP.</p>
-    <input type="file" id="fileInput" autocomplete="off" class="block w-full p-3 border rounded mb-4" accept=".csv" />
+    <h3 class="text-3xl font-bold mb-6">Upload Your Financials (Live Test)</h3>
+    <p class="mb-4">Only works with .csv (hosted live test)</p>
+    <input type="file" id="fileInput" class="block w-full p-3 border rounded mb-4" accept=".csv" />
     <button onclick="uploadFile()" class="bg-blue-600 text-white px-6 py-3 rounded">Upload File</button>
     <p id="uploadStatus" class="mt-4 text-green-600 hidden"></p>
     <div id="diagnosticResults" class="mt-6 p-4 bg-yellow-50 border border-yellow-300 rounded text-yellow-900 hidden"></div>
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer class="bg-gray-800 text-white text-center py-6">
-  <p>&copy; 2025 ClarityCFO.ai — All rights reserved.</p>
+<!-- Footer -->
+<footer class="bg-gray-900 text-white py-6 text-center text-sm">
+  &copy; 2025 ClarityCFO.ai &middot; All rights reserved.
 </footer>
 
-<!-- Firebase SDKs -->
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-storage-compat.js"></script>
-
+<!-- JavaScript -->
 <script>
   const firebaseConfig = {
     apiKey: "AIzaSyCfYTgv1MVWfDezRV-i00oL9ca3f56auFc",
@@ -109,9 +93,7 @@
     Papa.parse(file, {
       header: true,
       skipEmptyLines: true,
-      complete: (results) => {
-        handleFinancialData(results.data, file.name);
-      }
+      complete: (results) => handleFinancialData(results.data, file.name)
     });
 
     fileInput.value = "";
@@ -130,7 +112,6 @@
       );
       const name = (normalized["account"] || "").toString().toLowerCase();
       const amount = parseFloat(normalized["amount"] || normalized["value"] || 0);
-
       if (!name || isNaN(amount)) return;
 
       rowsParsed++;
@@ -140,7 +121,6 @@
 
     const burn = expenses - revenue;
     const format = n => n.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-
     const uploadStatus = document.getElementById("uploadStatus");
     const diagnosticBox = document.getElementById("diagnosticResults");
 
@@ -162,7 +142,6 @@
     } else {
       diagnosticBox.innerHTML = `<p class="text-green-700">✅ No Tier 1 issues detected.</p>`;
     }
-
     diagnosticBox.classList.remove("hidden");
 
     db.collection("financial_uploads").add({
@@ -174,7 +153,12 @@
     }).then(() => console.log("✅ Financial data saved to Firestore."))
       .catch((err) => console.error("❌ Firestore error:", err));
   }
-</script>
 
+  window.addEventListener('error', function (e) {
+    if (e.message.includes("A listener indicated an asynchronous response")) {
+      e.stopImmediatePropagation();
+    }
+  });
+</script>
 </body>
 </html>
