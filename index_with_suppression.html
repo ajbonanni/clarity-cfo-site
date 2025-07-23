@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ClarityCFO.ai</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+<section class="bg-white py-16 px-6">
+  <div class="max-w-xl mx-auto text-center">
+    <h3 class="text-3xl font-bold mb-6">Upload Your Financials</h3>
+    <p class="mb-4">Upload a .csv file — exported from QuickBooks, NetSuite, or SAP.</p>
+    <input type="file" id="fileInput" autocomplete="off" class="block w-full p-3 border rounded mb-4" accept=".csv" />
+    <button onclick="uploadFile()" class="bg-blue-600 text-white px-6 py-3 rounded">Upload File</button>
+    <p id="uploadStatus" class="mt-4 text-green-600 hidden"></p>
+    <div id="diagnosticResults" class="mt-6 p-4 bg-yellow-50 border border-yellow-300 rounded text-yellow-900 hidden"></div>
+  </div>
+</section>
+
+<!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-storage-compat.js"></script>
+
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyCfYTgv1MVWfDezRV-i00oL9ca3f56auFc",
+    authDomain: "clarity-cfo.firebaseapp.com",
+    projectId: "clarity-cfo",
+    storageBucket: "clarity-cfo.firebasestorage.app",
+    messagingSenderId: "744282604632",
+    appId: "1:744282604632:web:33f064b034e82a9c40f62d"
+  };
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+  const storage = firebase.storage();
+
+  function uploadFile() {
+    const fileInput = document.getElementById("fileInput");
+    const file = fileInput.files[0];
+    const uploadStatus = document.getElementById("uploadStatus");
+    const diagnosticBox = document.getElementById("diagnosticResults");
+
+    uploadStatus.classList.add("hidden");
+    diagnosticBox.classList.add("hidden");
+    diagnosticBox.innerHTML = "";
+
+    if (!file) {
+      alert("Please select a file.");
+      return;
+    }
+
+    uploadStatus.textContent = "⏳ Uploading...";
+    uploadStatus.classList.remove("hidden");
+
+    Papa.parse(file, {
+      header: true,
+      skipEmptyLines: true,
+      complete: (results) => {
+        handleFinancialData(results.data, file.name);
+      }
+    });
+
+    fileInput.value = "";
+  }
+
+  function handleFinancialData(data, filename) {
+    console.log("🧠 handleFinancialData triggered for:", filename);
+
+    let revenue = 0;
+    let expenses = 0;
+    let rowsParsed = 0;
+
+    data.forEach(row => {
+      const normalized = Object.fromEntries(
+        Object.entries(row).map(([k, v]) => [k.trim().toLowerCase(), v])
+      );
+      const name = (normalized["account"] || "").toString().toLowerCase();
+      const amount = parseFloat(normalized["amount"] || normalized["value"] || 0);
+
+      if (!name || isNaN(amount)) return;
+
+      rowsParsed++;
+      if (name.includes("revenue")) revenue += amount;
+      if (name.includes("expense")) expenses += amount;
+    });
+
+    const burn = expenses - revenue;
+    const format = n => n.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+
+    const uploadStatus = document.getElementById("uploadStatus");
+    const diagnosticBox = document.getElementById("diagnosticResults");
+
+    uploadStatus.textContent = `📊 Revenue: ${format(revenue)} | Expenses: ${format(expenses)} | Burn: ${format(burn)} ✅ File successfully uploaded`;
+    uploadStatus.classList.remove("hidden");
+
+    const flags = [];
+    if (burn > 50000) flags.push("⚠️ High burn rate detected");
+    if (revenue === 0) flags.push("⚠️ No revenue reported");
+    if (expenses > 2 * revenue) flags.push("⚠️ Expenses are more than 2x revenue");
+    if (revenue < 50000) flags.push("⚠️ Revenue below threshold");
+
+    if (rowsParsed === 0) {
+      diagnosticBox.innerHTML = `<p class="text-red-700 font-bold">⚠️ Could not find valid 'Account' and 'Amount' fields. Please check your file headers.</p>`;
+    } else if (flags.length > 0) {
+      diagnosticBox.innerHTML = `
+        <h4 class="font-bold mb-2">AI Diagnostic Summary:</h4>
+        <ul class="list-disc list-inside">${flags.map(f => `<li>${f}</li>`).join("")}</ul>`;
+    } else {
+      diagnosticBox.innerHTML = `<p class="text-green-700">✅ No Tier 1 issues detected.</p>`;
+    }
+
+    diagnosticBox.classList.remove("hidden");
+
+    db.collection("financial_uploads").add({
+      filename,
+      revenue,
+      expenses,
+      burn,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    }).then(() => console.log("✅ Financial data saved to Firestore."))
+      .catch((err) => console.error("❌ Firestore error:", err));
+  }
+
+  // Suppress Chrome extension error messages
+  window.addEventListener('error', function (e) {
+    if (e.message.includes("A listener indicated an asynchronous response")) {
+      e.stopImmediatePropagation();
+    }
+  });
+</script>
+
+</body>
+</html>
