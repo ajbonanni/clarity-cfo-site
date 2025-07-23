@@ -60,6 +60,7 @@
 
 <!-- JavaScript -->
 <script>
+try {
   const firebaseConfig = {
     apiKey: "AIzaSyCfYTgv1MVWfDezRV-i00oL9ca3f56auFc",
     authDomain: "clarity-cfo.firebaseapp.com",
@@ -159,6 +160,9 @@
       e.stopImmediatePropagation();
     }
   });
+} catch (e) {
+  console.error("🚨 Script error:", e);
+}
 </script>
 </body>
 </html>
