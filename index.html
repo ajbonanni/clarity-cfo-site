@@ -18,6 +18,7 @@
   <nav class="space-x-6 text-sm">
     <a href="#how-it-works" class="hover:text-blue-600">How It Works</a>
     <a href="#services" class="hover:text-blue-600">Services</a>
+    <a href="#import-modeling" class="hover:text-blue-600">Modeling</a>
     <a href="#pricing" class="hover:text-blue-600">Pricing</a>
     <a href="#file-upload" class="hover:text-blue-600">AI Demo</a>
   </nav>
@@ -48,6 +49,13 @@
     <div><h4 class="font-semibold mb-2">Forecasting + Burn</h4><p>Month-to-month clarity with automated CFO-grade projections.</p></div>
     <div><h4 class="font-semibold mb-2">Capital Raise Prep</h4><p>We model it, narrate it, and help you close it.</p></div>
   </div>
+</section>
+
+<section id="import-modeling" class="py-16 px-6 text-center bg-white">
+  <h2 class="text-3xl font-bold mb-6">Import & Modeling</h2>
+  <p class="max-w-3xl mx-auto text-gray-700">
+    Upload .csv, .xlsx, or .pdf files from QuickBooks, NetSuite, or SAP. ClarityCFO’s AI reads your raw data, detects revenue/expense patterns, forecasts burn, and generates financial narratives — no setup needed.
+  </p>
 </section>
 
 <section id="pricing" class="py-16 px-6 text-center bg-white">
@@ -89,7 +97,7 @@
 <section id="file-upload" class="bg-gray-50 py-16 px-6">
   <div class="max-w-xl mx-auto text-center">
     <h3 class="text-3xl font-bold mb-6">Upload Your Financials</h3>
-    <p class="mb-4">We support .csv, .xlsx, and .pdf files — exported from your accounting system.</p>
+    <p class="mb-4">We support .csv, .xlsx, and .pdf — exported from your accounting system.</p>
     <input type="file" id="fileInput" class="block w-full p-3 border rounded mb-4" accept=".csv,.xlsx,.pdf"/>
     <button onclick="uploadFile()" class="bg-blue-600 text-white px-6 py-3 rounded">Upload File</button>
     <p id="uploadStatus" class="mt-4 text-green-600 hidden"></p>
@@ -126,8 +134,8 @@ try {
     uploadStatus.classList.add("hidden");
     diagnosticBox.classList.add("hidden");
     aiNarrative.classList.add("hidden");
-    aiNarrative.innerHTML = "";
     diagnosticBox.innerHTML = "";
+    aiNarrative.innerHTML = "";
 
     if (!file) {
       alert("Please select a file.");
@@ -187,6 +195,7 @@ try {
     if (revenue < 50000) flags.push("⚠️ Revenue below threshold");
 
     const diagnosticBox = document.getElementById("diagnosticResults");
+    diagnosticBox.classList.remove("hidden");
     if (flags.length) {
       diagnosticBox.innerHTML = `
         <h4 class="font-bold mb-2">AI Diagnostic Summary:</h4>
@@ -194,14 +203,11 @@ try {
     } else {
       diagnosticBox.innerHTML = `<p class="text-green-700">✅ No Tier 1 issues detected.</p>`;
     }
-    diagnosticBox.classList.remove("hidden");
 
-    // Simulated Narrative AI Placeholder
     const aiNarrative = document.getElementById("aiNarrative");
-    aiNarrative.textContent = "🧠 GPT Insight: Revenue is below expected benchmarks. Burn is increasing. Consider expense cuts or raising capital.";
+    aiNarrative.textContent = "🧠 GPT Insight: Burn rate is increasing. Consider fundraising or adjusting costs.";
     aiNarrative.classList.remove("hidden");
 
-    // Simulated alert
     console.log("📬 Simulated AI Email Output:");
     console.log(`File: ${filename}`);
     console.log(`Revenue: ${revenue}, Expenses: ${expenses}, Burn: ${burn}`);
@@ -212,11 +218,9 @@ try {
       timestamp: firebase.firestore.FieldValue.serverTimestamp()
     });
   }
-
 } catch (err) {
   console.error("🚨 Script error:", err);
 }
 </script>
-
 </body>
 </html>
