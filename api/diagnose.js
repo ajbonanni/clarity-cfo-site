@@ -13,11 +13,23 @@ export default async function handler(req, res) {
         messages: [
           {
             role: "system",
-            content: "You are a world-class CFO diagnosing financial risks. Respond only in structured, plain English summaries."
+            content: "You are a world-class CFO diagnosing financial risks. Respond ONLY in valid JSON format as specified."
           },
           {
             role: "user",
-            content: `Analyze this financial snapshot:\nRevenue: ${revenue}\nExpenses: ${expenses}\nBurn: ${burn}\n\nReturn:\n1. Bullet list of Tier 1 risk flags\n2. One-sentence summary\n3. Short GPT-style narrative`
+            content: `Analyze this financial snapshot:
+Revenue: ${revenue}
+Expenses: ${expenses}
+Burn: ${burn}
+
+Return a JSON object with this exact structure:
+{
+  "flags": ["string"],
+  "summary": "string",
+  "narrative": "string"
+}
+
+Do not include commentary. Do not return markdown. Strictly return valid JSON only.`
           }
         ],
         temperature: 0.4
@@ -25,22 +37,25 @@ export default async function handler(req, res) {
     });
 
     const result = await response.json();
-    const message = result.choices?.[0]?.message?.content || "";
 
-    const [flagsText, summary, narrative] = message.split(/\n\n+/);
+    // Try to safely extract JSON content
+    const content = result.choices?.[0]?.message?.content || "";
+    const jsonStart = content.indexOf("{");
+    const jsonEnd = content.lastIndexOf("}") + 1;
+    const parsed = JSON.parse(content.slice(jsonStart, jsonEnd));
 
     res.status(200).json({
-      flags: flagsText ? flagsText.split("\n").filter(Boolean) : ["⚠️ No flags returned"],
-      summary: summary || "No summary available",
-      narrative: narrative || "No narrative available"
+      flags: parsed.flags || ["⚠️ No flags returned"],
+      summary: parsed.summary || "No summary available",
+      narrative: parsed.narrative || "No narrative available"
     });
 
-  } catch (err) {
-    console.error("Diagnostic error:", err);
+  } catch (error) {
+    console.error("🛑 Error in diagnose API:", error);
     res.status(500).json({
       flags: ["⚠️ AI diagnostic unavailable"],
-      summary: "AI failed to analyze your file.",
-      narrative: "No narrative available."
+      summary: "AI failed to analyze your file. Please try again later.",
+      narrative: "No narrative available"
     });
   }
 }
