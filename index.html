@@ -15,89 +15,8 @@
 
 <header class="bg-white shadow p-4 flex justify-between items-center">
   <h1 class="text-xl font-bold text-blue-600">ClarityCFO.ai</h1>
-  <nav class="space-x-6 text-sm">
-    <a href="#how-it-works" class="hover:text-blue-600">How It Works</a>
-    <a href="#services" class="hover:text-blue-600">Services</a>
-    <a href="#import-modeling" class="hover:text-blue-600">Modeling</a>
-    <a href="#pricing" class="hover:text-blue-600">Pricing</a>
-    <a href="#file-upload" class="hover:text-blue-600">AI Demo</a>
-  </nav>
 </header>
 
-<section class="bg-blue-600 text-white py-20 px-6 text-center">
-  <h1 class="text-4xl font-bold mb-4">Modern Finance. Automated. Scalable.</h1>
-  <p class="mb-6 max-w-xl mx-auto">ClarityCFO blends senior CFO strategy with real-time AI tools. Cash flow, burn rate, board-ready reports — without hiring a finance team.</p>
-  <a href="#file-upload" class="bg-white text-blue-600 font-semibold px-6 py-3 rounded">Get Your 5-Minute CFO Assessment →</a>
-</section>
-
-<section id="how-it-works" class="py-16 px-6 text-center">
-  <h2 class="text-3xl font-bold mb-10">How It Works</h2>
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-    <div><h3 class="text-xl font-bold mb-2">1. Onboard</h3><p>Connect QuickBooks, payroll, CRM. We’ll map your data in <strong>24 hours</strong>.</p></div>
-    <div><h3 class="text-xl font-bold mb-2">2. Automate</h3><p>Agentic AI builds rolling forecasts, cash views, and alerts.</p></div>
-    <div><h3 class="text-xl font-bold mb-2">3. Advise</h3><p>Monthly insights and founder coaching from real CFOs + live dashboards.</p></div>
-  </div>
-</section>
-
-<section id="services" class="bg-gray-100 py-16 px-6 text-center">
-  <h2 class="text-3xl font-bold mb-10">Our Services</h2>
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto text-left text-sm">
-    <div><h4 class="font-semibold mb-2">AR/AP Automation</h4><p>Auto-highlight slow payers, optimize vendors, cut overhead.</p></div>
-    <div><h4 class="font-semibold mb-2">Board + Investor Reporting</h4><p>Auto-generate updates, decks, and metrics for your next raise.</p></div>
-    <div><h4 class="font-semibold mb-2">Real-Time Cash Flow</h4><p>Live dashboards and alerts to extend runway confidently.</p></div>
-    <div><h4 class="font-semibold mb-2">Scenario Planning</h4><p>Hiring ramp? Pricing change? See impact before acting.</p></div>
-    <div><h4 class="font-semibold mb-2">Forecasting + Burn</h4><p>Month-to-month clarity with automated CFO-grade projections.</p></div>
-    <div><h4 class="font-semibold mb-2">Capital Raise Prep</h4><p>We model it, narrate it, and help you close it.</p></div>
-  </div>
-</section>
-
-<section id="import-modeling" class="py-16 px-6 text-center bg-white">
-  <h2 class="text-3xl font-bold mb-6">Import & Modeling</h2>
-  <p class="max-w-3xl mx-auto text-gray-700 mb-4">
-    Upload .csv, .xlsx, or .pdf files from QuickBooks, NetSuite, or SAP. ClarityCFO’s AI reads your data, detects revenue/expense patterns, forecasts burn, and generates financial narratives — no setup needed.
-  </p>
-  <a href="#file-upload" class="inline-block bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700">
-    Jump to Upload Tool →
-  </a>
-</section>
-
-<section id="pricing" class="py-16 px-6 text-center bg-white">
-  <h2 class="text-3xl font-bold mb-10">Pricing</h2>
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto text-left">
-    <div class="p-6 border rounded shadow">
-      <h3 class="text-xl font-bold mb-2">Starter</h3>
-      <p class="text-sm mb-4">Pre-revenue teams</p>
-      <ul class="text-sm list-disc list-inside mb-4">
-        <li>Cash dashboard</li>
-        <li>Email alerts</li>
-        <li>Burn summary</li>
-      </ul>
-      <p class="font-bold">$199/mo</p>
-    </div>
-    <div class="p-6 border rounded shadow">
-      <h3 class="text-xl font-bold mb-2">Growth</h3>
-      <p class="text-sm mb-4">VC-backed companies</p>
-      <ul class="text-sm list-disc list-inside mb-4">
-        <li>Scenario builder</li>
-        <li>Rolling forecasts</li>
-        <li>Board packs</li>
-      </ul>
-      <p class="font-bold">$499/mo</p>
-    </div>
-    <div class="p-6 border rounded shadow">
-      <h3 class="text-xl font-bold mb-2">Enterprise</h3>
-      <p class="text-sm mb-4">Multi-entity or pre-IPO</p>
-      <ul class="text-sm list-disc list-inside mb-4">
-        <li>Dedicated CFO partner</li>
-        <li>Fundraising support</li>
-        <li>Custom KPIs + visuals</li>
-      </ul>
-      <p class="font-bold">Custom Quote</p>
-    </div>
-  </div>
-</section>
-
-<!-- Upload Section + Diagnostic Output + Script -->
 <section id="file-upload" class="bg-gray-50 py-16 px-6">
   <div class="max-w-xl mx-auto text-center">
     <h3 class="text-3xl font-bold mb-6">Upload Your Financials</h3>
@@ -109,10 +28,6 @@
     <div id="aiNarrative" class="mt-6 text-sm italic text-gray-600 hidden"></div>
   </div>
 </section>
-
-<footer class="bg-gray-900 text-white py-6 text-center text-sm">
-  &copy; 2025 ClarityCFO.ai · All rights reserved.
-</footer>
 
 <script>
   const firebaseConfig = {
@@ -126,6 +41,28 @@
   firebase.initializeApp(firebaseConfig);
   const db = firebase.firestore();
   const storage = firebase.storage();
+
+  async function getGenAIDiagnostics(data) {
+  try {
+    const response = await fetch("/api/diagnose", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    });
+
+    return await response.json();
+  } catch (error) {
+    console.error("🛑 Diagnostic API Error:", error);
+    return {
+      flags: ["⚠️ AI diagnostic unavailable"],
+      summary: "AI failed to analyze your file. Please try again later.",
+      narrative: "No narrative available."
+    };
+  }
+}
+
 
   function uploadFile() {
     const fileInput = document.getElementById("fileInput");
@@ -178,7 +115,7 @@
     fileInput.value = "";
   }
 
-  function handleFinancialData(data, filename) {
+  async function handleFinancialData(data, filename) {
     let revenue = 0, expenses = 0;
     data.forEach(row => {
       const name = row["Account"]?.toLowerCase();
@@ -189,36 +126,31 @@
 
     const burn = expenses - revenue;
     const format = n => n.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+
     document.getElementById("uploadStatus").textContent =
       `📊 Revenue: ${format(revenue)} | Expenses: ${format(expenses)} | Burn: ${format(burn)} ✅ File successfully uploaded`;
 
-    const flags = [];
-    if (burn > 50000) flags.push("⚠️ High burn rate detected");
-    if (revenue === 0) flags.push("⚠️ No revenue reported");
-    if (expenses > 2 * revenue) flags.push("⚠️ Expenses are more than 2x revenue");
-    if (revenue < 50000) flags.push("⚠️ Revenue below threshold");
+    const diagnostics = await getGenAIDiagnostics({ revenue, expenses, burn, filename });
 
     const diagnosticBox = document.getElementById("diagnosticResults");
     diagnosticBox.classList.remove("hidden");
-    if (flags.length) {
-      diagnosticBox.innerHTML = `
-        <h4 class="font-bold mb-2">AI Diagnostic Summary:</h4>
-        <ul class="list-disc list-inside">${flags.map(f => `<li>${f}</li>`).join("")}</ul>`;
-    } else {
-      diagnosticBox.innerHTML = `<p class="text-green-700">✅ No Tier 1 issues detected.</p>`;
-    }
+    diagnosticBox.innerHTML = `
+      <h4 class="font-bold mb-2">AI Diagnostic Summary:</h4>
+      <ul class="list-disc list-inside">
+        ${diagnostics.flags.map(f => `<li>${f}</li>`).join("")}
+      </ul>
+      <p class="mt-2 text-sm text-gray-700">${diagnostics.summary}</p>
+    `;
 
     const aiNarrative = document.getElementById("aiNarrative");
-    aiNarrative.textContent = "🧠 GPT Insight: Burn rate is increasing. Consider fundraising or adjusting costs.";
+    aiNarrative.textContent = `🧠 GPT Insight: ${diagnostics.narrative}`;
     aiNarrative.classList.remove("hidden");
-
-    console.log("📬 Simulated AI Email Output:");
-    console.log(`File: ${filename}`);
-    console.log(`Revenue: ${revenue}, Expenses: ${expenses}, Burn: ${burn}`);
-    flags.forEach(f => console.log("- " + f));
 
     db.collection("financial_uploads").add({
       filename, revenue, expenses, burn,
+      flags: diagnostics.flags,
+      summary: diagnostics.summary,
+      narrative: diagnostics.narrative,
       timestamp: firebase.firestore.FieldValue.serverTimestamp()
     });
   }
