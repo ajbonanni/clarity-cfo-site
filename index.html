@@ -4,239 +4,185 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ClarityCFO.ai</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-storage-compat.js"></script>
+
+  <!-- TailwindCSS -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+
+  <!-- Auth0 SDK -->
+<script src="https://cdn.auth0.com/js/auth0-spa-js/1.13/auth0-spa-js.production.js"></script>
 </head>
 <body class="bg-gray-50 text-gray-800">
 
-<header class="bg-white shadow p-4 flex justify-between items-center">
-  <h1 class="text-xl font-bold text-blue-600">ClarityCFO.ai</h1>
-  <nav class="space-x-6 text-sm">
-    <a href="#how-it-works" class="hover:text-blue-600">How It Works</a>
-    <a href="#services" class="hover:text-blue-600">Services</a>
-    <a href="#import-modeling" class="hover:text-blue-600">Modeling</a>
-    <a href="#pricing" class="hover:text-blue-600">Pricing</a>
-    <a href="#file-upload" class="hover:text-blue-600">AI Demo</a>
-  </nav>
-</header>
+  <!-- NAV -->
+  <header class="bg-white shadow">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold text-blue-600">ClarityCFO.ai</h1>
+      <nav class="space-x-6">
+  <a href="#how" class="text-gray-700 hover:text-blue-600">How It Works</a>
+  <a href="#services" class="text-gray-700 hover:text-blue-600">Services</a>
+  <a href="#pricing" class="text-gray-700 hover:text-blue-600">Pricing</a>
+  <a href="#demo" class="text-gray-700 hover:text-blue-600">AI Demo</a>
+  <a href="#upload" class="text-white bg-blue-600 px-4 py-2 rounded">Get Started</a>
 
-<section class="bg-blue-600 text-white py-20 px-6 text-center">
-  <h1 class="text-4xl font-bold mb-4">Modern Finance. Automated. Scalable.</h1>
-  <p class="mb-6 max-w-xl mx-auto">ClarityCFO blends senior CFO strategy with real-time AI tools. Cash flow, burn rate, board-ready reports — without hiring a finance team.</p>
-  <a href="#file-upload" class="bg-white text-blue-600 font-semibold px-6 py-3 rounded">Get Your 5-Minute CFO Assessment →</a>
-</section>
-
-<section id="how-it-works" class="py-16 px-6 text-center">
-  <h2 class="text-3xl font-bold mb-10">How It Works</h2>
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-    <div><h3 class="text-xl font-bold mb-2">1. Onboard</h3><p>Connect QuickBooks, payroll, CRM. We’ll map your data in <strong>24 hours</strong>.</p></div>
-    <div><h3 class="text-xl font-bold mb-2">2. Automate</h3><p>Agentic AI builds rolling forecasts, cash views, and alerts.</p></div>
-    <div><h3 class="text-xl font-bold mb-2">3. Advise</h3><p>Monthly insights and founder coaching from real CFOs + live dashboards.</p></div>
-  </div>
-</section>
-
-<section id="services" class="bg-gray-100 py-16 px-6 text-center">
-  <h2 class="text-3xl font-bold mb-10">Our Services</h2>
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto text-left text-sm">
-    <div><h4 class="font-semibold mb-2">AR/AP Automation</h4><p>Auto-highlight slow payers, optimize vendors, cut overhead.</p></div>
-    <div><h4 class="font-semibold mb-2">Board + Investor Reporting</h4><p>Auto-generate updates, decks, and metrics for your next raise.</p></div>
-    <div><h4 class="font-semibold mb-2">Real-Time Cash Flow</h4><p>Live dashboards and alerts to extend runway confidently.</p></div>
-    <div><h4 class="font-semibold mb-2">Scenario Planning</h4><p>Hiring ramp? Pricing change? See impact before acting.</p></div>
-    <div><h4 class="font-semibold mb-2">Forecasting + Burn</h4><p>Month-to-month clarity with automated CFO-grade projections.</p></div>
-    <div><h4 class="font-semibold mb-2">Capital Raise Prep</h4><p>We model it, narrate it, and help you close it.</p></div>
-  </div>
-</section>
-
-<section id="import-modeling" class="py-16 px-6 text-center bg-white">
-  <h2 class="text-3xl font-bold mb-6">Import & Modeling</h2>
-  <p class="max-w-3xl mx-auto text-gray-700 mb-4">
-    Upload .csv, .xlsx, or .pdf files from QuickBooks, NetSuite, or SAP. ClarityCFO’s AI reads your data, detects revenue/expense patterns, forecasts burn, and generates financial narratives — no setup needed.
-  </p>
-  <a href="#file-upload" class="inline-block bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700">
-    Jump to Upload Tool →
-  </a>
-</section>
-
-<section id="pricing" class="py-16 px-6 text-center bg-white">
-  <h2 class="text-3xl font-bold mb-10">Pricing</h2>
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto text-left">
-    <div class="p-6 border rounded shadow">
-      <h3 class="text-xl font-bold mb-2">Starter</h3>
-      <p class="text-sm mb-4">Pre-revenue teams</p>
-      <ul class="text-sm list-disc list-inside mb-4">
-        <li>Cash dashboard</li>
-        <li>Email alerts</li>
-        <li>Burn summary</li>
-      </ul>
-      <p class="font-bold">$199/mo</p>
+  <!-- 🔐 Auth Buttons and Status -->
+  <span id="authStatus" class="text-sm text-gray-500"></span>
+  <button id="loginBtn" onclick="login()" class="text-sm text-blue-600 underline ml-4">Login</button>
+  <button id="logoutBtn" onclick="logout()" class="text-sm text-red-600 underline ml-4" style="display:none">Logout</button>
+</nav>
     </div>
-    <div class="p-6 border rounded shadow">
-      <h3 class="text-xl font-bold mb-2">Growth</h3>
-      <p class="text-sm mb-4">VC-backed companies</p>
-      <ul class="text-sm list-disc list-inside mb-4">
-        <li>Scenario builder</li>
-        <li>Rolling forecasts</li>
-        <li>Board packs</li>
-      </ul>
-      <p class="font-bold">$499/mo</p>
-    </div>
-    <div class="p-6 border rounded shadow">
-      <h3 class="text-xl font-bold mb-2">Enterprise</h3>
-      <p class="text-sm mb-4">Multi-entity or pre-IPO</p>
-      <ul class="text-sm list-disc list-inside mb-4">
-        <li>Dedicated CFO partner</li>
-        <li>Fundraising support</li>
-        <li>Custom KPIs + visuals</li>
-      </ul>
-      <p class="font-bold">Custom Quote</p>
-    </div>
-  </div>
-</section>
+  </header>
 
-<section id="file-upload" class="bg-gray-50 py-16 px-6">
-  <div class="max-w-xl mx-auto text-center">
-    <h3 class="text-3xl font-bold mb-6">Upload Your Financials</h3>
-    <p class="mb-4">We support .csv, .xlsx, and .pdf — exported from your accounting system.</p>
-    <input type="file" id="fileInput" class="block w-full p-3 border rounded mb-4" accept=".csv,.xlsx,.pdf"/>
-    <button onclick="uploadFile()" class="bg-blue-600 text-white px-6 py-3 rounded">Upload File</button>
-    <p id="uploadStatus" class="mt-4 text-green-600 hidden"></p>
+  <!-- HERO -->
+  <section class="bg-gradient-to-b from-blue-50 to-white py-20 text-center">
+    <h1 class="text-4xl font-bold text-gray-900 mb-4">Modern Finance. Automated. Scalable.</h1>
+    <p class="text-lg mb-6">ClarityCFO blends senior CFO strategy with real-time AI tools. Cash flow, burn rate, board-ready reports — without hiring a finance team.</p>
+    <div class="mt-6 flex justify-center gap-4 flex-wrap">
+      <a href="#upload" class="bg-blue-600 text-white px-6 py-3 rounded shadow">Get Your 5-Minute CFO Assessment →</a>
+      <a href="#upload" class="bg-white border border-blue-600 text-blue-600 px-6 py-3 rounded shadow hover:bg-blue-50 transition">Import from QuickBooks</a>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how" class="py-16 text-center">
+    <h2 class="text-2xl font-bold mb-8">How It Works</h2>
+    <div class="flex justify-center gap-12 text-left max-w-5xl mx-auto">
+      <div><strong>1. Onboard</strong><br>Connect QuickBooks, payroll, CRM. We'll map your data in 24 hours.</div>
+      <div><strong>2. Automate</strong><br>Agentic AI builds rolling forecasts, cash views, and alerts.</div>
+      <div><strong>3. Advise</strong><br>Monthly insights and founder coaching from real CFOs + live dashboards.</div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="py-16 bg-gray-100 text-center">
+    <h2 class="text-2xl font-bold mb-8">Our Services</h2>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-6 max-w-5xl mx-auto text-left">
+      <div><strong>Real-Time Cash Flow</strong><br>Live forecasts, alerts, and dashboards that evolve daily.</div>
+      <div><strong>Scenario Planning</strong><br>Revenue drops, hiring ramp, new market expansion — plan it all.</div>
+      <div><strong>Burn + Budget Tracking</strong><br>AI-powered monthly updates. Founder-friendly. Board-ready.</div>
+      <div><strong>AR/AP Automation</strong><br>Highlight slow payers, optimize vendors, and eliminate waste.</div>
+      <div><strong>Investor Reporting</strong><br>Generate investor decks and board updates — hands-free.</div>
+      <div><strong>Capital Raise Prep</strong><br>Cap tables, SAFE modeling, pitch decks — ready to close.</div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing" class="py-16 text-center bg-white">
+    <h2 class="text-2xl font-bold mb-8">Pricing</h2>
+    <div class="flex flex-col md:flex-row justify-center gap-6 max-w-6xl mx-auto text-left">
+      <!-- Starter Plan -->
+      <div class="flex-1 border rounded-lg p-6 shadow bg-white">
+        <h3 class="text-xl font-semibold mb-1">Starter</h3>
+        <p class="text-blue-600 font-bold mb-2">$99/mo</p>
+        <ul class="list-disc list-inside text-sm text-gray-700">
+          <li>Entry-level access</li>
+          <li>Basic financial upload and diagnostics</li>
+          <li>No AI-generated summaries</li>
+          <li>View-only dashboard access</li>
+        </ul>
+      </div>
+      <!-- Growth Plan -->
+      <div class="flex-1 border rounded-lg p-6 shadow bg-white">
+        <h3 class="text-xl font-semibold mb-1">Growth</h3>
+        <p class="text-blue-600 font-bold mb-2">$299/mo</p>
+        <ul class="list-disc list-inside text-sm text-gray-700">
+          <li>AI diagnostics + narrative summaries</li>
+          <li>Automated burn + runway alerts</li>
+          <li>Email summaries + CSV/XLSX support</li>
+          <li>Diagnostic flag tracking</li>
+        </ul>
+      </div>
+      <!-- Enterprise Plan -->
+      <div class="flex-1 border rounded-lg p-6 shadow bg-white">
+        <h3 class="text-xl font-semibold mb-1">Enterprise</h3>
+        <p class="text-blue-600 font-bold mb-2">Custom</p>
+        <ul class="list-disc list-inside text-sm text-gray-700">
+          <li>Custom Advisory</li>
+          <li>White-glove onboarding + agentic modeling</li>
+          <li>Monthly CFO coaching + budget reviews</li>
+          <li>Full audit trail + capital prep tools</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI Demo Upload -->
+  <section id="demo" class="py-16 text-center">
+    <h2 class="text-xl font-bold mb-4">AI Demo: Import & Analyze</h2>
+    <p class="mb-4">We support .csv, .xlsx, and .pdf — exported from your accounting system.<br>Upload files to receive automated AI diagnostics and financial charts.</p>
+    <input type="file" id="fileInput" class="border p-2 rounded mb-4" />
+    <button onclick="handleUpload()" class="bg-blue-600 text-white px-6 py-2 rounded">Upload File</button>
+  </section>
+
+  <!-- File Upload Section -->
+  <section id="upload" class="py-12 text-center">
+    <h2 class="text-xl font-bold mb-4">Upload Your Financials</h2>
+    <input type="file" id="fileInput2" class="border p-2 rounded mb-4" />
+    <button onclick="handleUpload()" class="bg-blue-600 text-white px-6 py-2 rounded">Submit</button>
+    <p id="uploadStatus" class="text-green-600 mt-4 hidden"></p>
     <div id="diagnosticResults" class="mt-6 p-4 bg-yellow-50 border border-yellow-300 rounded text-yellow-900 hidden"></div>
-    <div id="aiNarrative" class="mt-6 text-sm italic text-gray-600 hidden"></div>
-  </div>
-</section>
+  </section>
 
-<footer class="bg-gray-900 text-white py-6 text-center text-sm">
-  &copy; 2025 ClarityCFO.ai · All rights reserved.
-</footer>
+  <!-- Chart Section -->
+  <section id="visualization" class="py-12 text-center bg-white">
+    <h2 class="text-xl font-bold mb-4">📊 Financial Visualization</h2>
+    <div class="max-w-3xl mx-auto">
+      <canvas id="financialChart"></canvas>
+    </div>
+  </section>
 
+  <!-- Firebase + Scripts -->
+  <script src="/js/firebase-config.js"></script>
+  <script src="/js/chart.js"></script>
+  <script src="/js/main.js"></script>
 <script>
-  const firebaseConfig = {
-    apiKey: "AIzaSyCfYTgv1MVWfDezRV-i00oL9ca3f56auFc",
-    authDomain: "clarity-cfo.firebaseapp.com",
-    projectId: "clarity-cfo",
-    storageBucket: "clarity-cfo.firebasestorage.app",
-    messagingSenderId: "744282604632",
-    appId: "1:744282604632:web:33f064b034e82a9c40f62d"
+  // Initialize Auth0
+  let auth0 = null;
+
+  const configureClient = async () => {
+    auth0 = await createAuth0Client({
+      domain: "dev-pnuopchazfb3feef.us.auth0.com",
+      client_id: "80EnQZGLRCTNKvmSSyuWXx9Anvid9Paq",
+      cacheLocation: "localstorage",
+      useRefreshTokens: true
+    });
   };
-  firebase.initializeApp(firebaseConfig);
-  const db = firebase.firestore();
-  const storage = firebase.storage();
 
-  async function getGenAIDiagnostics(data) {
-    try {
-      const response = await fetch("/api/diagnose", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-      });
+  const login = async () => {
+    await auth0.loginWithRedirect({
+      redirect_uri: window.location.origin
+    });
+  };
 
-      return await response.json();
-    } catch (error) {
-      console.error("🛑 Diagnostic API Error:", error);
-      return {
-        flags: ["⚠️ AI diagnostic unavailable"],
-        summary: "AI failed to analyze your file. Please try again later.",
-        narrative: "No narrative available."
-      };
-    }
-  }
+  const logout = () => {
+    auth0.logout({
+      returnTo: window.location.origin
+    });
+  };
 
-  function uploadFile() {
-    const fileInput = document.getElementById("fileInput");
-    const file = fileInput.files[0];
-    const uploadStatus = document.getElementById("uploadStatus");
-    const diagnosticBox = document.getElementById("diagnosticResults");
-    const aiNarrative = document.getElementById("aiNarrative");
+  window.onload = async () => {
+    await configureClient();
 
-    uploadStatus.classList.add("hidden");
-    diagnosticBox.classList.add("hidden");
-    aiNarrative.classList.add("hidden");
-    uploadStatus.innerHTML = "";
-    diagnosticBox.innerHTML = "";
-    aiNarrative.innerHTML = "";
-
-    if (!file) {
-      alert("Please select a file.");
-      return;
+    const query = window.location.search;
+    if (query.includes("code=") && query.includes("state=")) {
+      await auth0.handleRedirectCallback();
+      window.history.replaceState({}, document.title, "/");
     }
 
-    const ext = file.name.toLowerCase().split('.').pop();
-    uploadStatus.textContent = "⏳ Uploading...";
-    uploadStatus.classList.remove("hidden");
+    const isAuthenticated = await auth0.isAuthenticated();
 
-    if (ext === "csv") {
-      Papa.parse(file, {
-        header: true,
-        skipEmptyLines: true,
-        complete: (results) => handleFinancialData(results.data, file.name)
-      });
-    } else if (ext === "xlsx") {
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        const wb = XLSX.read(e.target.result, { type: 'array' });
-        const data = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]]);
-        handleFinancialData(data, file.name);
-      };
-      reader.readAsArrayBuffer(file);
-    } else if (ext === "pdf") {
-      const ref = storage.ref().child("uploads/" + file.name);
-      ref.put(file).then(() => {
-        uploadStatus.textContent = "📄 PDF uploaded to Firebase Storage.";
-      }).catch(() => {
-        uploadStatus.textContent = "❌ Failed to upload PDF.";
-      });
+    if (isAuthenticated) {
+      const user = await auth0.getUser();
+      document.getElementById("authStatus").innerHTML = `🔐 Logged in as: <strong>${user.email}</strong>`;
+      document.getElementById("loginBtn").style.display = "none";
+      document.getElementById("logoutBtn").style.display = "inline-block";
     } else {
-      uploadStatus.textContent = "❌ Unsupported file type.";
+      document.getElementById("authStatus").innerHTML = `🚫 Not logged in`;
+      document.getElementById("loginBtn").style.display = "inline-block";
+      document.getElementById("logoutBtn").style.display = "none";
     }
-
-    fileInput.value = "";
-  }
-
-  async function handleFinancialData(data, filename) {
-    let revenue = 0, expenses = 0;
-    data.forEach(row => {
-      const name = row["Account"]?.toLowerCase();
-      const amount = parseFloat(row["Amount"] || row["Value"] || 0);
-      if (name?.includes("revenue")) revenue += amount;
-      if (name?.includes("expense")) expenses += amount;
-    });
-
-    const burn = expenses - revenue;
-    const format = n => n.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-
-    document.getElementById("uploadStatus").textContent =
-      `📊 Revenue: ${format(revenue)} | Expenses: ${format(expenses)} | Burn: ${format(burn)} ✅ File successfully uploaded`;
-
-    const diagnostics = await getGenAIDiagnostics({ revenue, expenses, burn, filename });
-
-    const diagnosticBox = document.getElementById("diagnosticResults");
-    diagnosticBox.classList.remove("hidden");
-    diagnosticBox.innerHTML = `
-      <h4 class="font-bold mb-2">AI Diagnostic Summary:</h4>
-      <ul class="list-disc list-inside">
-        ${diagnostics.flags.map(f => `<li>${f}</li>`).join("")}
-      </ul>
-      <p class="mt-2 text-sm text-gray-700">${diagnostics.summary}</p>
-    `;
-
-    const aiNarrative = document.getElementById("aiNarrative");
-    aiNarrative.textContent = `🧠 GPT Insight: ${diagnostics.narrative}`;
-    aiNarrative.classList.remove("hidden");
-
-    db.collection("financial_uploads").add({
-      filename, revenue, expenses, burn,
-      flags: diagnostics.flags,
-      summary: diagnostics.summary,
-      narrative: diagnostics.narrative,
-      timestamp: firebase.firestore.FieldValue.serverTimestamp()
-    });
-  }
+  };
 </script>
+
+
 </body>
 </html>
