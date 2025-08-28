@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ClarityCFO.ai</title>
+
+  <!-- TailwindCSS -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+
+  <!-- Auth0 SDK -->
+<script src="https://cdn.auth0.com/js/auth0-spa-js/1.13/auth0-spa-js.production.js"></script>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- NAV -->
+  <header class="bg-white shadow">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold text-blue-600">ClarityCFO.ai</h1>
+      <nav class="space-x-6">
+  <a href="#how" class="text-gray-700 hover:text-blue-600">How It Works</a>
+  <a href="#services" class="text-gray-700 hover:text-blue-600">Services</a>
+  <a href="#pricing" class="text-gray-700 hover:text-blue-600">Pricing</a>
+  <a href="#demo" class="text-gray-700 hover:text-blue-600">AI Demo</a>
+  <a href="#upload" class="text-white bg-blue-600 px-4 py-2 rounded">Get Started</a>
+
+  <!-- 🔐 Auth Buttons and Status -->
+  <span id="authStatus" class="text-sm text-gray-500"></span>
+  <button id="loginBtn" onclick="login()" class="text-sm text-blue-600 underline ml-4">Login</button>
+  <button id="logoutBtn" onclick="logout()" class="text-sm text-red-600 underline ml-4" style="display:none">Logout</button>
+</nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="bg-gradient-to-b from-blue-50 to-white py-20 text-center">
+    <h1 class="text-4xl font-bold text-gray-900 mb-4">Modern Finance. Automated. Scalable.</h1>
+    <p class="text-lg mb-6">ClarityCFO blends senior CFO strategy with real-time AI tools. Cash flow, burn rate, board-ready reports — without hiring a finance team.</p>
+    <div class="mt-6 flex justify-center gap-4 flex-wrap">
+      <a href="#upload" class="bg-blue-600 text-white px-6 py-3 rounded shadow">Get Your 5-Minute CFO Assessment →</a>
+      <a href="#upload" class="bg-white border border-blue-600 text-blue-600 px-6 py-3 rounded shadow hover:bg-blue-50 transition">Import from QuickBooks</a>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how" class="py-16 text-center">
+    <h2 class="text-2xl font-bold mb-8">How It Works</h2>
+    <div class="flex justify-center gap-12 text-left max-w-5xl mx-auto">
+      <div><strong>1. Onboard</strong><br>Connect QuickBooks, payroll, CRM. We'll map your data in 24 hours.</div>
+      <div><strong>2. Automate</strong><br>Agentic AI builds rolling forecasts, cash views, and alerts.</div>
+      <div><strong>3. Advise</strong><br>Monthly insights and founder coaching from real CFOs + live dashboards.</div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="py-16 bg-gray-100 text-center">
+    <h2 class="text-2xl font-bold mb-8">Our Services</h2>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-6 max-w-5xl mx-auto text-left">
+      <div><strong>Real-Time Cash Flow</strong><br>Live forecasts, alerts, and dashboards that evolve daily.</div>
+      <div><strong>Scenario Planning</strong><br>Revenue drops, hiring ramp, new market expansion — plan it all.</div>
+      <div><strong>Burn + Budget Tracking</strong><br>AI-powered monthly updates. Founder-friendly. Board-ready.</div>
+      <div><strong>AR/AP Automation</strong><br>Highlight slow payers, optimize vendors, and eliminate waste.</div>
+      <div><strong>Investor Reporting</strong><br>Generate investor decks and board updates — hands-free.</div>
+      <div><strong>Capital Raise Prep</strong><br>Cap tables, SAFE modeling, pitch decks — ready to close.</div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing" class="py-16 text-center bg-white">
+    <h2 class="text-2xl font-bold mb-8">Pricing</h2>
+    <div class="flex flex-col md:flex-row justify-center gap-6 max-w-6xl mx-auto text-left">
+      <!-- Starter Plan -->
+      <div class="flex-1 border rounded-lg p-6 shadow bg-white">
+        <h3 class="text-xl font-semibold mb-1">Starter</h3>
+        <p class="text-blue-600 font-bold mb-2">$99/mo</p>
+        <ul class="list-disc list-inside text-sm text-gray-700">
+          <li>Entry-level access</li>
+          <li>Basic financial upload and diagnostics</li>
+          <li>No AI-generated summaries</li>
+          <li>View-only dashboard access</li>
+        </ul>
+      </div>
+      <!-- Growth Plan -->
+      <div class="flex-1 border rounded-lg p-6 shadow bg-white">
+        <h3 class="text-xl font-semibold mb-1">Growth</h3>
+        <p class="text-blue-600 font-bold mb-2">$299/mo</p>
+        <ul class="list-disc list-inside text-sm text-gray-700">
+          <li>AI diagnostics + narrative summaries</li>
+          <li>Automated burn + runway alerts</li>
+          <li>Email summaries + CSV/XLSX support</li>
+          <li>Diagnostic flag tracking</li>
+        </ul>
+      </div>
+      <!-- Enterprise Plan -->
+      <div class="flex-1 border rounded-lg p-6 shadow bg-white">
+        <h3 class="text-xl font-semibold mb-1">Enterprise</h3>
+        <p class="text-blue-600 font-bold mb-2">Custom</p>
+        <ul class="list-disc list-inside text-sm text-gray-700">
+          <li>Custom Advisory</li>
+          <li>White-glove onboarding + agentic modeling</li>
+          <li>Monthly CFO coaching + budget reviews</li>
+          <li>Full audit trail + capital prep tools</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI Demo Upload -->
+  <section id="demo" class="py-16 text-center">
+    <h2 class="text-xl font-bold mb-4">AI Demo: Import & Analyze</h2>
+    <p class="mb-4">We support .csv, .xlsx, and .pdf — exported from your accounting system.<br>Upload files to receive automated AI diagnostics and financial charts.</p>
+    <input type="file" id="fileInput" class="border p-2 rounded mb-4" />
+    <button onclick="handleUpload()" class="bg-blue-600 text-white px-6 py-2 rounded">Upload File</button>
+  </section>
+
+  <!-- File Upload Section -->
+  <section id="upload" class="py-12 text-center">
+    <h2 class="text-xl font-bold mb-4">Upload Your Financials</h2>
+    <input type="file" id="fileInput2" class="border p-2 rounded mb-4" />
+    <button onclick="handleUpload()" class="bg-blue-600 text-white px-6 py-2 rounded">Submit</button>
+    <p id="uploadStatus" class="text-green-600 mt-4 hidden"></p>
+    <div id="diagnosticResults" class="mt-6 p-4 bg-yellow-50 border border-yellow-300 rounded text-yellow-900 hidden"></div>
+  </section>
+
+  <!-- Chart Section -->
+  <section id="visualization" class="py-12 text-center bg-white">
+    <h2 class="text-xl font-bold mb-4">📊 Financial Visualization</h2>
+    <div class="max-w-3xl mx-auto">
+      <canvas id="financialChart"></canvas>
+    </div>
+  </section>
+
+  <!-- Firebase + Scripts -->
+  <script src="/js/firebase-config.js"></script>
+  <script src="/js/chart.js"></script>
+  <script src="/js/main.js"></script>
+<script>
+  // Initialize Auth0
+  let auth0 = null;
+
+  const configureClient = async () => {
+    auth0 = await createAuth0Client({
+      domain: "dev-pnuopchazfb3feef.us.auth0.com",
+      client_id: "80EnQZGLRCTNKvmSSyuWXx9Anvid9Paq",
+      cacheLocation: "localstorage",
+      useRefreshTokens: true
+    });
+  };
+
+  const login = async () => {
+    await auth0.loginWithRedirect({
+      redirect_uri: window.location.origin
+    });
+  };
+
+  const logout = () => {
+    auth0.logout({
+      returnTo: window.location.origin
+    });
+  };
+
+  window.onload = async () => {
+    await configureClient();
+
+    const query = window.location.search;
+    if (query.includes("code=") && query.includes("state=")) {
+      await auth0.handleRedirectCallback();
+      window.history.replaceState({}, document.title, "/");
+    }
+
+    const isAuthenticated = await auth0.isAuthenticated();
+
+    if (isAuthenticated) {
+      const user = await auth0.getUser();
+      document.getElementById("authStatus").innerHTML = `🔐 Logged in as: <strong>${user.email}</strong>`;
+      document.getElementById("loginBtn").style.display = "none";
+      document.getElementById("logoutBtn").style.display = "inline-block";
+    } else {
+      document.getElementById("authStatus").innerHTML = `🚫 Not logged in`;
+      document.getElementById("loginBtn").style.display = "inline-block";
+      document.getElementById("logoutBtn").style.display = "none";
+    }
+  };
+</script>
+
+
+</body>
+</html>

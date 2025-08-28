@@ -1,0 +1,10 @@
+{
+  "outputDirectory": ".",
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/", "destination": "/index.html" }
+  ],
+  "builds": [
+    { "src": "index.html", "use": "@vercel/static" }
+  ]
+}
