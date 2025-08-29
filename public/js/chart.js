@@ -33,3 +33,4 @@ function renderChart(revenue, expenses, burn) {
     }
   });
 }
+// Force redeploy fix – 08/29/2025

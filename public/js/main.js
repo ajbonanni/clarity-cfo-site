@@ -320,3 +320,4 @@ window.addEventListener("error", (e) => {
     e.stopImmediatePropagation();
   }
 });
+// Force redeploy fix – 08/29/2025

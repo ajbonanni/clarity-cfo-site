@@ -12,3 +12,4 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 const storage = firebase.storage();
+// Force redeploy fix – 08/29/2025
