@@ -154,7 +154,7 @@
       uploadStatus.textContent = `📊 Revenue: ${fmt(revenue)} | Expenses: ${fmt(expenses)} | Burn: ${fmt(burn)}`;
 
       const flags = [];
-      if (burn > 50000) flags.push(⚠️ High burn rate");
+      if (burn > 50000) flags.push("⚠️ High burn rate");
       if (revenue === 0) flags.push("⚠️ No revenue");
       if (expenses > 2 * revenue) flags.push("⚠️ Expenses exceed 2× revenue");
       if (revenue < 50000) flags.push("⚠️ Revenue < $50k");
@@ -167,5 +167,10 @@
       db.collection("financial_uploads").add({ filename, revenue, expenses, burn, timestamp: firebase.firestore.FieldValue.serverTimestamp() });
     }
   </script>
+
+  <!-- Custom JS Files (hosted in /public/js/) -->
+  <script src="/js/firebase-config.js"></script>
+  <script src="/js/chart.js"></script>
+  <script src="/js/main.js"></script>
 </body>
 </html>
