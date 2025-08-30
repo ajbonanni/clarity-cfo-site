@@ -65,7 +65,6 @@
 
   <!-- Firebase Init + App Logic -->
   <script>
-    // Auth0
     let auth0Client = null;
     async function configureClient() {
       auth0Client = await createAuth0Client({
@@ -93,7 +92,6 @@
       }
     };
 
-    // Firebase
     const firebaseConfig = {
       apiKey: "AIzaSyCfYTgv1MVWfDezRV-i00oL9ca3f56auFc",
       authDomain: "clarity-cfo.firebaseapp.com",
@@ -106,7 +104,6 @@
     const db = firebase.firestore();
     const storage = firebase.storage();
 
-    // Upload + Diagnostics
     function handleUpload() {
       const fileInput = document.getElementById("fileInput") || document.getElementById("fileInput2");
       const file = fileInput.files[0];
@@ -168,11 +165,9 @@
     }
   </script>
 
-  <!-- ✅ Updated Script Paths -->
+  <!-- ✅ Updated Script Paths (NO leading slashes) -->
   <script src="js/firebase-config.js"></script>
   <script src="js/chart.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
-</html>
-<!-- Force Vercel redeploy -->
